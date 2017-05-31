@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body
+        {
+            font-family: 微軟正黑體,Arial Unicode MS;
+            font-size: 12px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css"
+        rel="stylesheet" type="text/css" />
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+</head>
+<body onload="initialize()">
+    <table style="width: 100%">
+        <tr>
+            <td style="width: 100%; height: 450px;">
+                <div id="map_canvas" style="width: 100%; height: 450px;">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                WebBrowser 呼叫 Windows Form Methods :<br />
+                <input type="text" id="input_name" value="Lawrence" />
+                <input type="button" value="Hello" onclick="window.external.CallMessageBox(document.getElementById('input_name').value)" />
+            </td>
+        </tr>
+    </table>
+</body>
+
+<script type="text/javascript">
+    var map;
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+            zoom: 8,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            window.external.SetPoint(event.latLng.lat(), event.latLng.lng());
+        });
+
+    }
+
+    function AddMarker(lat, lng) {
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lng),
+            map: map,
+            title: "Hello World!"
+        });
+    }
+</script>
+
+</html>
